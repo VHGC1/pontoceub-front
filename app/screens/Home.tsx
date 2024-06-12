@@ -7,9 +7,8 @@ import dayjs from "dayjs";
 import { IinitialRegion } from "../interfaces/IinitialRegion";
 import { IcurrentLocation } from "../interfaces/IcurrentLocation";
 import api from "../api";
-
-import { MapContainer, TileLayer } from "react-leaflet";
-
+import Leaflet from "leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default function HomeScreen() {
@@ -69,16 +68,35 @@ export default function HomeScreen() {
       .catch((e: any) => alert(e.response?.data.message));
   }
 
+  const CustomIcon = Leaflet.divIcon({
+    html: '<div style="background: red; width: 10px; height: 10px; border-radius: 50%;"></div>',
+    className: "custom-icon",
+    iconSize: [10, 10],
+    iconAnchor: [5, 5],
+  });
+
   return (
     <View style={styles.container}>
       <View style={[styles.mapContainer, styles.mapSkeleton]}>
-        <MapContainer
-          center={[51.505, -0.09]}
-          zoom={13}
-          style={{ height: "400px" }}
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        </MapContainer>
+        {initialRegion && (
+          <MapContainer
+            center={[initialRegion.latitude, initialRegion.longitude]}
+            zoom={15}
+            style={{ height: "400px" }}
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+            {currentLocation && (
+              <Marker
+                icon={CustomIcon}
+                position={[
+                  currentLocation?.latitude,
+                  currentLocation?.longitude,
+                ]}
+              ></Marker>
+            )}
+          </MapContainer>
+        )}
       </View>
 
       <View style={styles.clockContainer}>

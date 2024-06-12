@@ -37,9 +37,9 @@ const TimesheetList = () => {
   return (
     <View style={styles.container}>
       {timeSheetList.length === 0 && (
-        <div style={{ alignSelf: "center", marginTop: "1rem" }}>
+        <Text style={{ alignSelf: "center", marginTop: "1rem" }}>
           Não existem registros no sistema!
-        </div>
+        </Text>
       )}
       <FlatList
         onEndReached={() => addOnTheTimeSheetList()}

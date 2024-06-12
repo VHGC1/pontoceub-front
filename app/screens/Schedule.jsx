@@ -34,9 +34,9 @@ const Schedule = () => {
 
   return (
     <View style={styles.container}>
-      {classes.length === 0 ? (
-        <div>Não existem aulas cadastradas!</div>
-      ) : (
+      {classes.length === 0 && <Text>Não existem aulas cadastradas!</Text>}
+
+      {classes.length > 0 && (
         <View style={styles.boxContainer}>
           <View>
             <Text style={styles.boxContainerTitle}>Aulas</Text>
@@ -75,7 +75,7 @@ const Schedule = () => {
 
             <View style={styles.classesContainer}>
               {classes[selectedDay]?.classes.map(
-                ({ schedule, discipline, campus }, index) => (
+                ({ schedule, name, campus }, index) => (
                   <View key={campus + index}>
                     <View
                       style={{
@@ -92,7 +92,7 @@ const Schedule = () => {
                       <Text>{schedule}</Text>
                     </View>
 
-                    <Text>{discipline}</Text>
+                    <Text>{name}</Text>
                     <Text>{campus}</Text>
                   </View>
                 )
