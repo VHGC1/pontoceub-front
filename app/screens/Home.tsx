@@ -8,6 +8,11 @@ import { IinitialRegion } from "../interfaces/IinitialRegion";
 import { IcurrentLocation } from "../interfaces/IcurrentLocation";
 import api from "../api";
 
+import 'leaflet/dist/leaflet.css';
+
+
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+
 export default function HomeScreen() {
   const [currentLocation, setCurrentLocation] = useState<
     IcurrentLocation | IcurrentLocation
@@ -67,7 +72,19 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.mapContainer, styles.mapSkeleton]}></View>
+      <View style={[styles.mapContainer, styles.mapSkeleton]}>
+        <MapContainer
+          center={[51.505, -0.09]}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution={'<a href="http://www.google.com">Google&copy</a>'}
+            url="http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}"
+            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+          />
+        </MapContainer>
+      </View>
 
       <View style={styles.clockContainer}>
         <MaterialCommunityIcons name={"clock-outline"} size={35} color="#ccc" />
