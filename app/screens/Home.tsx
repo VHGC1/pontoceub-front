@@ -8,10 +8,9 @@ import { IinitialRegion } from "../interfaces/IinitialRegion";
 import { IcurrentLocation } from "../interfaces/IcurrentLocation";
 import api from "../api";
 
-import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer } from "react-leaflet";
 
-
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 export default function HomeScreen() {
   const [currentLocation, setCurrentLocation] = useState<
@@ -76,13 +75,9 @@ export default function HomeScreen() {
         <MapContainer
           center={[51.505, -0.09]}
           zoom={13}
-          scrollWheelZoom={false}
+          style={{ height: "400px" }}
         >
-          <TileLayer
-            attribution={'<a href="http://www.google.com">Google&copy</a>'}
-            url="http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}"
-            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
-          />
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         </MapContainer>
       </View>
 
