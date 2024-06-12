@@ -13,7 +13,6 @@ const TimesheetList = () => {
       api
         .get(`time-registry/registries?pageNumber=${pageNo}&size=7`)
         .then((r) => {
-          console.log(r);
           setTimeSheetList(r.data.content);
           setLastPage(r.data.last);
         });

@@ -24,7 +24,7 @@ export default function UserStack() {
             <DrawerItemList {...props} />
             <DrawerItem
               label="Sair"
-              onPress={onLogout}
+              onPress={() => onLogout}
               icon={() => (
                 <MaterialCommunityIcons name="logout" size={35} color="#000" />
               )}
