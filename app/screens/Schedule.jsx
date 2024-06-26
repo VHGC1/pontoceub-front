@@ -23,6 +23,7 @@ const Schedule = () => {
       "quarta-feira",
       "quinta-feira",
       "sexta-feira",
+      "sabado"
     ];
 
     const today = dayjs().day() - 1;
